@@ -123,3 +123,53 @@ Pass the following instructions to the developer/agent:
 
 6. **Concurrency Control**:
 * Set the Dagster `tag_concurrency_limits` or use a `Limit` resource to ensure only 1 processing job runs at a time (VLM inference is heavy).
+
+---
+
+## 5. Demo / How to Run
+
+Follow these steps to run the pipeline with the provided sample data.
+
+### Prerequisites
+
+Ensure you have `uv` installed. If not, refer to the [uv documentation](https://docs.astral.sh/uv/getting-started/installation/).
+
+### Installation
+
+1.  Clone the repository and navigate to the root directory.
+2.  Install dependencies:
+    ```bash
+    uv pip install -e .
+    ```
+
+### Running the Demo
+
+1.  **Start the Dagster UI:**
+    ```bash
+    uv run dagster dev
+    ```
+    Open your browser to `http://127.0.0.1:3000`.
+
+2.  **Activate the Sensor:**
+    In the Dagster UI, navigate to **Overview > Sensors**. Find `new_pdf_sensor` and toggle it **ON**.
+
+3.  **Trigger the Pipeline:**
+    Copy the sample PDF from the `data` directory to the `input_pdfs` directory (which the sensor watches).
+    ```bash
+    mkdir -p input_pdfs
+    cp data/sample.pdf input_pdfs/
+    ```
+
+4.  **Observe Execution:**
+    *   The sensor will detect the new file and trigger a run for `process_single_pdf_job`.
+    *   Navigate to the **Runs** tab to watch the progress.
+    *   Since we use `in_process_executor`, logs will appear in the UI.
+
+5.  **Check Output:**
+    Once the run succeeds, check the `input_pdfs` directory for the generated Markdown file.
+    ```bash
+    ls -l input_pdfs/sample.md
+    cat input_pdfs/sample.md
+    ```
+
+    You should see the Markdown content extracted from the PDF.
