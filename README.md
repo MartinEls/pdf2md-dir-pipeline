@@ -145,6 +145,7 @@ Ensure you have `uv` installed. If not, refer to the [uv documentation](https://
 ### Running the Demo
 
 1.  **Start the Dagster UI:**
+    Run the following command to start the Dagster development server (configured via `pyproject.toml`):
     ```bash
     uv run dagster dev
     ```
