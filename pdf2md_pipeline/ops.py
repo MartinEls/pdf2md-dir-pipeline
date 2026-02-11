@@ -59,11 +59,14 @@ def ingest_and_split_pdf(context, config: IngestConfig):
         yield DynamicOutput(chunk, mapping_key=str(i))
 
 @op
-def convert_chunk_granite(context, chunk: BytesIO, docling: DoclingResource) -> str:
+def convert_chunk(context, chunk: BytesIO, docling: DoclingResource) -> str:
     """
-    Converts a PDF chunk (BytesIO) to Markdown using Granite VLM via DoclingResource.
+    Converts a PDF chunk (BytesIO) to Markdown using DoclingResource (VLM or Default).
     """
-    context.log.info("Converting chunk with Granite VLM")
+    if docling.use_vlm:
+        context.log.info("Converting chunk with Granite VLM")
+    else:
+        context.log.info("Converting chunk with Docling Default")
 
     # Get the converter from the resource
     converter = docling.get_converter()
