@@ -10,3 +10,9 @@ dependencies = [
     "docling",
     "pymupdf",
 ]
+
+[tool.setuptools]
+packages = ["pdf2md_pipeline"]
+
+[tool.dagster]
+module_name = "pdf2md_pipeline.definitions"
