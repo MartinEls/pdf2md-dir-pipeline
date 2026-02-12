@@ -4,7 +4,7 @@ from io import BytesIO
 from unittest.mock import MagicMock
 from dagster import build_op_context, DynamicOutput
 
-from pdf2md_pipeline.ops import ingest_and_split_pdf, convert_chunk_granite, merge_and_write_markdown, IngestConfig
+from pdf2md_pipeline.ops import ingest_and_split_pdf, convert_chunk, merge_and_write_markdown, IngestConfig
 from pdf2md_pipeline.resources import DoclingResource
 
 class MockDoclingResource(DoclingResource):
@@ -39,17 +39,17 @@ def test_ingest_and_split_pdf():
         if os.path.exists(pdf_path):
             os.remove(pdf_path)
 
-def test_convert_chunk_granite():
+def test_convert_chunk():
     # Use subclass to satisfy type check
     mock_resource = MockDoclingResource()
 
     context = build_op_context()
     chunk = BytesIO(b"dummy pdf content")
 
-    md = convert_chunk_granite(context, chunk, docling=mock_resource)
+    md = convert_chunk(context, chunk, docling=mock_resource)
 
     assert md == "# Markdown Content"
-    print("convert_chunk_granite test passed!")
+    print("convert_chunk test passed!")
 
 def test_merge_and_write_markdown():
     context = build_op_context()
@@ -73,5 +73,5 @@ def test_merge_and_write_markdown():
 
 if __name__ == "__main__":
     test_ingest_and_split_pdf()
-    test_convert_chunk_granite()
+    test_convert_chunk()
     test_merge_and_write_markdown()
