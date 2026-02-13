@@ -2,6 +2,7 @@
 input_pdfs/*.md
 input_pdfs/*.pdf
 input_pdfs/*.err
+input_pdfs/archiv/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

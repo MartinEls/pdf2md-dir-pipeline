@@ -12,7 +12,7 @@ class DoclingResource(ConfigurableResource):
     Can be configured to use the Granite VLM backend or the default Docling pipeline.
     Caches the converter instance to avoid reloading models for each chunk.
     """
-    use_vlm: bool = False  # Flag to determine whether to use the Granite VLM backend
+    use_vlm: bool = True  # Flag to determine whether to use the Granite VLM backend
     _converter: object = PrivateAttr(default=None)
 
     def get_converter(self) -> DocumentConverter:
