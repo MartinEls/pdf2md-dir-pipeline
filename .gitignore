@@ -212,4 +212,7 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Dagster temporary home directories
 .tmp_dagster_home_*
+2206.01062v1.md

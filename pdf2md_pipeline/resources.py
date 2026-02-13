@@ -3,7 +3,7 @@ from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling.pipeline.vlm_pipeline import VlmPipeline
 from docling.datamodel.pipeline_options import VlmPipelineOptions
 from docling.datamodel.base_models import InputFormat
-from docling.datamodel.vlm_model_specs import GRANITEDOCLING_TRANSFORMERS
+from docling.datamodel.vlm_model_specs import GRANITEDOCLING_MLX
 from pydantic import PrivateAttr
 
 class DoclingResource(ConfigurableResource):
@@ -21,7 +21,7 @@ class DoclingResource(ConfigurableResource):
                 # Initialize with Granite VLM backend
                 # Using GRANITEDOCLING_TRANSFORMERS for local execution via HuggingFace Transformers
                 pipeline_options = VlmPipelineOptions(
-                    vlm_options=GRANITEDOCLING_TRANSFORMERS
+                    vlm_options=GRANITEDOCLING_MLX
                 )
 
                 # Configure format options specifically for PDF
