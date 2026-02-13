@@ -1,7 +1,13 @@
+# project specific data files and directories to ignore
+input_pdfs/*.md
+input_pdfs/*.pdf
+input_pdfs/*.err
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
+.DS_Store
 
 # C extensions
 *.so
